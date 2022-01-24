@@ -11,9 +11,8 @@ public class guesstheNumber {
         boolean complete = false;
         boolean won = false;
         System.out.println("Hello! What is your name?");
-        name = in.nextLine();
         try {
-
+            name = in.nextLine();
         } catch (Exception e) {
             name = "Amadeus";
         }
@@ -39,6 +38,8 @@ public class guesstheNumber {
                                 won = true;
                             }
                         }
+                        else
+                            System.out.println("Choose a number between 1 and 20.");
                     } catch (Exception e) {
                         System.out.println("Choose a number between 1 and 20.");
                     }
@@ -49,11 +50,19 @@ public class guesstheNumber {
                     System.out.println("Sorry but you ran out of guesses.  You lose!");
                 }
                 System.out.println("Would you like to play again? (y or n)");
-                play = replay.nextLine();
-                if (play.equals("y")) {
-                    won = false;
-                } else if (play.equals("n"))
-                    complete = true;
+               try {
+                   do {
+                       play = replay.nextLine();
+                       if (play.equals("y")) {
+                           won = false;
+                       } else if (play.equals("n"))
+                           complete = true;
+                   }
+                   while(!(play.equals("y") || play.equals("n")));
+               }
+               catch(Exception e) {
+                   complete = true;
+               }
             }
             in.close();
         }
